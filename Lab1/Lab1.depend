@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1526357392 source:c:\users\administrator\desktop\computer_graphics\lab1\rect.c
+	<GL/gl.h>
+	<GL/glut.h>
+
