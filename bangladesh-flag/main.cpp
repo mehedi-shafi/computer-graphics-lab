@@ -25,6 +25,47 @@ void display(void) {
     * (0.25, 0.25, 0.0) and (0.75, 0.75, 0.0)
     */
 
+    //flag others
+    glColor3ub(255, 128, 0);
+    glBegin(GL_POLYGON);
+    glVertex2d(-270, 160);
+    glVertex2d(-285, 160);
+    glVertex2d(-285, -260);
+    glVertex2d(-270, -260);
+    glEnd();
+
+    glColor3ub(51, 25, 0);
+    glBegin(GL_POLYGON);
+
+    glVertex2d(-285, -260);
+    glVertex2d(-285, -280);
+    glVertex2d(-255, -280);
+    glVertex2d(-255, -260);
+
+    glEnd();
+
+    glColor3ub(51, 25, 0);
+    glBegin(GL_POLYGON);
+
+    glVertex2d(-300, -280);
+    glVertex2d(-300, -300);
+    glVertex2d(-240, -300);
+    glVertex2d(-240, -280);
+
+    glEnd();
+
+    /// flag body
+    glColor3ub(0,102,0);
+    glBegin(GL_POLYGON);
+
+    glVertex2d(-270, 150);
+    glVertex2d(-270, -150);
+    glVertex2d(270, -150);
+    glVertex2d(270, 150);
+
+    glEnd();
+
+
     glColor3ub (255, 0, 0);
     glBegin(GL_POLYGON);
 
@@ -89,11 +130,15 @@ void init (void) {
 */
 int main(int argc, char** argv) {
 
-    cout << "Enter radius: ";
-    cin >> radius;
-    cout << "Center coordinate: ";
-    cin >> centerx >> centery;
+    // cout << "Enter radius: ";
+    // cin >> radius;
+    // cout << "Center coordinate: ";
+    // cin >> centerx >> centery;
 
+    radius = 100;        
+    centerx = 0;
+    centery = 0;
+    
     pnot = 1 - radius;
 
     glutInit(&argc, argv);
