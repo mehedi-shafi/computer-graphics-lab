@@ -25,15 +25,6 @@ void drawCircle(int cx, int cy, int rad){
     int currx = 0, curry = rad;
     while (curry > currx){
 
-        // glVertex2d(currx+centerx, curry+centery);
-        // glVertex2d(currx+centerx, -curry+centery);
-        // glVertex2d(-currx+centerx, curry+centery);
-        // glVertex2d(-currx+centerx, -curry+centery);
-        // glVertex2d(curry+centerx, currx+centery);
-        // glVertex2d(-curry+centerx, currx+centery);
-        // glVertex2d(curry+centerx, -currx+centery);
-        // glVertex2d(-curry+centerx, -currx+centery);
-
         glVertex2d(centerx+currx, centery+curry);
         glVertex2d(centerx-currx, centery+curry);
         glVertex2d(centerx+currx, centery-curry);
