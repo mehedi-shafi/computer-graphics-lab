@@ -5,9 +5,9 @@
 
 using namespace std;
 
-int radius, centerx, centery, pnot;
+int radius, centerx, centery;
 
-int getParaMeter(int currx, int curry)
+int getParaMeter(int currx, int curry, int pnot)
 {
     if (pnot < 0){
         return pnot + (2*currx) + 1;
@@ -17,68 +17,63 @@ int getParaMeter(int currx, int curry)
     }
 }
 
+void drawCircle(int cx, int cy, int rad){
+    int pnot = 1 - rad;
 
-void display(void) {
-    /* clear all pixels */
-    glClear (GL_COLOR_BUFFER_BIT);
-    /* draw white polygon (rectangle) with corners at
-    * (0.25, 0.25, 0.0) and (0.75, 0.75, 0.0)
-    */
-
-    glColor3ub (255, 0, 0);
     glBegin(GL_POLYGON);
 
-    int currx = 0;
-    int curry = radius;
+    int currx = 0, curry = rad;
+    while (curry > currx){
 
-    while (currx <= curry){
+        // glVertex2d(currx+centerx, curry+centery);
+        // glVertex2d(currx+centerx, -curry+centery);
+        // glVertex2d(-currx+centerx, curry+centery);
+        // glVertex2d(-currx+centerx, -curry+centery);
+        // glVertex2d(curry+centerx, currx+centery);
+        // glVertex2d(-curry+centerx, currx+centery);
+        // glVertex2d(curry+centerx, -currx+centery);
+        // glVertex2d(-curry+centerx, -currx+centery);
 
         glVertex2d(centerx+currx, centery+curry);
         glVertex2d(centerx-currx, centery+curry);
         glVertex2d(centerx+currx, centery-curry);
         glVertex2d(centerx-currx, centery-curry);
-        glVertex2d(centery+curry, centerx+currx);
-        glVertex2d(centery-curry, centerx+currx);
-        glVertex2d(centery+curry, centerx-currx);
-        glVertex2d(centery-curry, centerx-currx);
+        glVertex2d(centerx+curry, centery+currx);
+        glVertex2d(centerx-curry, centery+currx);
+        glVertex2d(centerx+curry, centery-currx);
+        glVertex2d(centerx-curry, centery-currx);
 
-/*
-        glVertex2d(actualX(currx), actualY(curry));
-        glVertex2d(actualX(currx), -actualY(curry));
-        glVertex2d(-actualX(currx), actualY(curry));
-        glVertex2d(-actualX(currx), -actualY(curry));
-        glVertex2d(actualY(curry), actualX(currx));
-        glVertex2d(actualY(curry), -actualX(currx));
-        glVertex2d(-actualY(curry), actualX(currx));
-        glVertex2d(-actualY(curry), -actualX(currx));
-*/
         if (pnot < 0){
             currx ++;
-            pnot = getParaMeter(currx, curry);
+            pnot = getParaMeter(currx, curry, pnot);
         }
         else{
             currx ++;
             curry --;
-            pnot = getParaMeter(currx, curry);
+            pnot = getParaMeter(currx, curry, pnot);
         }
     }
-
     glEnd();
+}
 
 
-    /* don't wait!
-    * start processing buffered OpenGL routines
-    */
+void display(void) {
+    glClear (GL_COLOR_BUFFER_BIT);
+
+    glColor3ub (255, 0, 0);
+
+    drawCircle(centerx, centery, radius);
+
     glFlush ();
 }
 void init (void) {
     /* select clearing (background) color */
-    glClearColor (0, 0, 0, 0);
+    glClearColor (1, 1, 1, 1);
     /* initialize viewing values */
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 //glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
-    gluOrtho2D(-300, 300, -300, 300);
+    gluOrtho2D(-500, 500, -500, 500);
 }
 /*
 * Declare initial window size, position, and display mode
@@ -94,11 +89,11 @@ int main(int argc, char** argv) {
     cout << "Center coordinate: ";
     cin >> centerx >> centery;
 
-    pnot = 1 - radius;
+    // pnot = 1 - radius;
 
     glutInit(&argc, argv);
     glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
-    glutInitWindowSize (500, 500);
+    glutInitWindowSize (720, 720);
     glutInitWindowPosition (100, 100);
     glutCreateWindow ("hello");
     init ();
