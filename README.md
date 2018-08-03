@@ -11,5 +11,6 @@ Instruction on How to install GLUT and use the library is attached in the [extra
 3. Bresenham Line Drawing Algorithm.
 4. Mid-point Circle Drawing Algorithm.
 5. Drawing Martyr Monument Using Mid-point Circle Algorithm.
+6. Solution of lab final questions. Attached with the readme in that folder.
 
 > Drop by issues if you face any error. Feel free to update. Cheers.
